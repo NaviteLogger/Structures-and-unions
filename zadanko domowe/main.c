@@ -30,16 +30,6 @@ int main()
             {"Ashley Davis"},
             {"Michael Rod"}
     };
-    int OcenyStudentow[][4] = {{},
-                               {},
-                               {},
-                               {},
-                               {},
-                               {},
-                               {},
-                               {},
-                               {},
-                               {}};
 
     srand(time(NULL));
     int r;
@@ -70,8 +60,6 @@ int main()
         for (int j = 0; j < NUM_SUBJECTS;j++)
         {
             r = rand() % 4 + 2;
-            OcenyStudentow[i][j] = r;
-
             strukturaStudent[i].average += (float)r;
             strukturaStudent[i].grades[j] = r;
         }
@@ -118,7 +106,7 @@ int main()
         printf("%s %s \t%.2f\n",tekstAplikacji[7],tekstAplikacji[i+2],srednieZPrzedmiotow[i]);
     }
 
-    printf("Srednia ze wszystkich ocen to: \t%0.2f",sredniaWszystkiego);
+    printf("Srednia ze wszystkich ocen to: \t\t\t%0.2f",sredniaWszystkiego);
 
     return 0;
 }
