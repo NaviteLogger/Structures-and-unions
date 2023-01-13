@@ -1,22 +1,27 @@
+/*
+*Marek Kacprzak, WCY22IY3S1
+*Zajecia: 10.01.2023, rozliczenie: 17.01.2023 23:59
+*Temat: Zadanie 4 Oceny studentow
+*/
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define NUM_STUDENTS 9
-#define NUM_SUBJECTS 4
+#define liczbaStudentow 9 //stala liczba studentow
+#define liczbaPrzedmiotow 4//stala liczba przedmiotow
 
 struct Student {
     char imieINazwisko[40];
-    int grades[NUM_SUBJECTS];
-    float average;
+    int oceny[liczbaPrzedmiotow];
+    float sredniaArytmetycznaOcen;
 };
 
 int main()
 {
-    float srednieZPrzedmiotow[NUM_SUBJECTS];
+    float srednieZPrzedmiotow[liczbaPrzedmiotow]; //zainicjowanie tablicy srednich z przedmiotu
 
-    struct Student strukturaStudent[10];
+    struct Student strukturaStudent[10]; //zainicjowanie listy struktur o typie Student
 
     char ImionaINazwiska[][30] = {
             {"Jane Smith"},
@@ -44,64 +49,65 @@ int main()
             "       srednia ucznia:     ",
             "Srednia z przedmiotu: ",
             };
-    //zerowanie średnich
-    for (int i = 0; i < NUM_STUDENTS; i++)
+
+    //zerowanie srednich ucznia oraz z przedmiotu
+    for (int i = 0; i < liczbaStudentow; i++)
     {
-        strukturaStudent[i].average = 0;
+        strukturaStudent[i].sredniaArytmetycznaOcen = 0;
     }
-    for (int i = 0; i < NUM_SUBJECTS; ++i)
+    for (int i = 0; i < liczbaPrzedmiotow; ++i)
     {
         srednieZPrzedmiotow[i] = 0;
     }
 
     //losowanie ocen
-    for(int i = 0; i < NUM_STUDENTS;i++)
+    for(int i = 0; i < liczbaStudentow;i++)
     {
-        for (int j = 0; j < NUM_SUBJECTS;j++)
+        for (int j = 0; j < liczbaPrzedmiotow;j++)
         {
             r = rand() % 4 + 2;
-            strukturaStudent[i].average += (float)r;
-            strukturaStudent[i].grades[j] = r;
+            strukturaStudent[i].sredniaArytmetycznaOcen += (float)r;
+            strukturaStudent[i].oceny[j] = r;
         }
-        strukturaStudent[i].average = strukturaStudent[i].average / NUM_SUBJECTS;
+        strukturaStudent[i].sredniaArytmetycznaOcen = strukturaStudent[i].sredniaArytmetycznaOcen / liczbaPrzedmiotow;
         strcpy(strukturaStudent[i].imieINazwisko,ImionaINazwiska[i]);
     }
 
     float sredniaWszystkiego = 0;
 
     //wyliczanie sredniej
-    for(int i=0;i<NUM_SUBJECTS;i++)
+    for(int i=0;i<liczbaPrzedmiotow;i++)
     {
-        for(int j=0;j<NUM_STUDENTS;j++)
+        for(int j=0;j<liczbaStudentow;j++)
         {
-            srednieZPrzedmiotow[i] += (float)strukturaStudent[j].grades[i];
-            sredniaWszystkiego += (float)strukturaStudent[j].grades[i];
+            srednieZPrzedmiotow[i] += (float)strukturaStudent[j].oceny[i];
+            sredniaWszystkiego += (float)strukturaStudent[j].oceny[i];
 
         }
-        srednieZPrzedmiotow[i] = srednieZPrzedmiotow[i] / (float)NUM_STUDENTS;
+        srednieZPrzedmiotow[i] = srednieZPrzedmiotow[i] / (float)liczbaStudentow;
     }
 
-    sredniaWszystkiego = sredniaWszystkiego / (float)(NUM_STUDENTS*NUM_SUBJECTS);
+    sredniaWszystkiego = sredniaWszystkiego / (float)(liczbaStudentow*liczbaPrzedmiotow);
 
     //wyswietlanie struktur
-    for(int i = 0; i<NUM_STUDENTS;i++) {
+    for(int i = 0; i<liczbaStudentow;i++) {
         int temp = 0;
         printf("%s", tekstAplikacji[temp]);
         temp++;
         printf("%s \t", strukturaStudent[i].imieINazwisko);
         printf("%s", tekstAplikacji[temp]);
         temp = +6;
-        for (int k = 0; k < NUM_SUBJECTS; ++k) {
+        for (int k = 0; k < liczbaPrzedmiotow; ++k) {
             printf("%s", tekstAplikacji[k + 2]);
-            printf("%i ", strukturaStudent[i].grades[k]);
+            printf("%i ", strukturaStudent[i].oceny[k]);
         }
         printf("%s", tekstAplikacji[temp]);
-        printf("%.2f", strukturaStudent[i].average);
+        printf("%.2f", strukturaStudent[i].sredniaArytmetycznaOcen);
         printf("\n");
     }
 
-    //wydrukowanie sredniej ocen
-    for (int i = 0; i < NUM_SUBJECTS;i++)
+    //wyswietlanie sredniej ocen
+    for (int i = 0; i < liczbaPrzedmiotow; i++)
     {
         printf("%s %s \t%.2f\n",tekstAplikacji[7],tekstAplikacji[i+2],srednieZPrzedmiotow[i]);
     }
