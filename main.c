@@ -42,6 +42,8 @@ int main()
     PrzechowalniaDanych strukturaKopia;
 
     strukturaKopia = struktura;
+    // str copy
+    // dla prostych danych zwykłe "="
 
     char tablicaWyrazow[][30] =
         {
@@ -56,18 +58,18 @@ int main()
             "Numer dokumentu"};
 
     printf("Podaj swoje imie: ");
-    scanf("%s", &struktura.imie);
+    scanf_s("%s", &struktura.imie);
     printf("Podaj swoje nazwisko: ");
-    scanf("%s", &struktura.nazwisko);
+    scanf_s("%s", &struktura.nazwisko);
     printf("Podaj swoj rodzaj dokumentu: ");
     fflush(stdin);
-    scanf("%c", &struktura.rodzajDokumentuTozsamosci);
+    scanf_s("%c", &struktura.rodzajDokumentuTozsamosci);
     fflush(stdin);
     printf("Podaj swoj numer dokumentu: ");
-    scanf("%i", &struktura.numerDokumentuTozsamosci);
+    scanf_s("%i", &struktura.numerDokumentuTozsamosci);
 
     printf("%s", tablicaWyrazow[0]);
-    printf("%s, ");
+
     printf("Imie: %s, nazwisko: %s, rodzaj dokumentu tozsamosci: %c, numer dokumentu tozsamosci: %i", struktura.imie, struktura.nazwisko, struktura.rodzajDokumentuTozsamosci, struktura.numerDokumentuTozsamosci);
 
     return 0;
